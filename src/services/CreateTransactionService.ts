@@ -17,14 +17,14 @@ class CreateTransactionService {
     if (title === '') throw Error('Title is empty!');
     else if (value < 0) throw Error('Value must be positive!');
     else if (type !== 'income' && type !== 'outcome') {
-      throw Error('Type must be income or outcome');
+      throw new Error('Type must be income or outcome');
     }
 
     if (
       type === 'outcome' &&
       this.transactionsRepository.getBalance().total - value < 0
     ) {
-      throw Error(
+      throw new Error(
         'Cant do this operation, balance is negative. EARN MORE MONEY!',
       );
     }
